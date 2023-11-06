@@ -1,0 +1,15 @@
+{
+  "name": "3.1-typescript-part-2",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "strict": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "rd /s /q dist && tsc",
+    "start": "node dist/server_v2.js",
+    "bs": "npm run build && npm run start"
+  },
+  "author": "Vitalii Fetisov",
+  "license": "ISC"
+}
