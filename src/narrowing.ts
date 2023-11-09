@@ -16,8 +16,7 @@ function summ(a: IObject): number {
         if (elem && typeof elem.cvalue === 'string') return +elem.cvalue || 2021;  // -> num
         if (
             elem &&
-            typeof elem.cvalue !== 'string' &&
-            typeof elem.cvalue !== 'number' &&
+            typeof elem.cvalue === 'object' &&
             elem.cvalue !== undefined
         ) {
             return summ(elem.cvalue);  // -> num
@@ -25,7 +24,7 @@ function summ(a: IObject): number {
         return elem!.cvalue as number;  // -> num
     });
     let sum: number = 0;
-    for (let i = 0; i < x.length; i++) {
+    for (let i: number = 0; i < x.length; i++) {
         sum += x[i];
     }
     return sum;
