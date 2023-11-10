@@ -30,6 +30,6 @@ function summ(a: IObject): number {
     return sum;
 }
 
-const test = { hello: {cvalue: 1}, world: { cvalue: { yay: { cvalue: "2" } } } }
+const test: IObject = { hello: {cvalue: 1}, world: { cvalue: { yay: { cvalue: "2" } } } }
 
 console.log(summ(test))
