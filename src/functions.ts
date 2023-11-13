@@ -21,7 +21,9 @@ console.log(result)
 //    а возвращает полноценный объект типа Т
 // ... как вы поняли, саму функцию писать не надо :)
 // нас интересует только ее сигнатура.
-function someFunc<T>(param: Partial<T>, fn: (param: Partial<T>) => T) {}
+function someFunc<T>(param: Partial<T>, fn: (param: Partial<T>) => T): T {
+    return fn(param);
+}
 
 
 // Более сложный вариант:
@@ -39,4 +41,34 @@ type T = {
 
 type TypeFunc<Type> = (param: Partial<Type>) => Type;
 
-function someFunc2(param: Partial<T>, fn: TypeFunc<T>){}
+function someFunc2(param: Partial<T>, fn: TypeFunc<T>): T{
+    return fn(param);
+}
+
+
+// Последняя задача:
+// Напишите сигнатуру функции, которая принимает
+// - некий класс
+// - количество
+// ...а возвращает массив экземпляров этого класса
+
+class Rectangle {
+    w!: number;
+    h!: number;
+}
+class Circle {
+    radius!: number;
+}
+
+// сделайте норм сигнатуру тут.
+// НЕТ, Rectangle|Circle это не вариант, надо сделать универсальную функцию
+function stamp<TypeClass>(SOMECLASS: new () => TypeClass, count: number): TypeClass[]  {
+    let a: TypeClass[] = []
+    for (let i: number = 0; i < count; i++)
+        a.push(new SOMECLASS());
+
+    return a;
+}
+
+let a: Rectangle[] = stamp(Rectangle, 10);
+let b: Circle[] = stamp(Circle, 20)
